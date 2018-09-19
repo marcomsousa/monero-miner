@@ -1,6 +1,4 @@
-# Simple image that returns the container ID on http get
-
-CPU miner for monero (cryptonight algorithm) uses [xmrig](https://github.com/xmrig/xmrig)
+# CPU miner for monero (cryptonight algorithm) uses [xmrig](https://github.com/xmrig/xmrig)
 
 # Introducing: Monero
 It is still possible to get into cryptocurrency with your regular hardware though, but you’ll have to mine different currencies.
