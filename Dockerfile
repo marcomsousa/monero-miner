@@ -7,7 +7,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
       wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV XMRIG_VERSION=2.6.4 XMRIG_SHA256=34d390a499d2098bce92e6b85b4858ee6255a7e2d4e03197ba4f6a759efe349c
+ENV XMRIG_VERSION=2.8.3 XMRIG_SHA256=72de7ab30950ae2f9a5f3e8eb1478362158bd5ad011303907f52bcac62dac791
 
 RUN useradd -ms /bin/bash monero
 USER monero
