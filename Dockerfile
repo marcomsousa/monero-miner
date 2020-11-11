@@ -10,14 +10,15 @@ RUN DEBIAN_FRONTEND=noninteractive \
 ENV XMRIG_VERSION=6.5.1 
 ENV XMRIG_SHA256=9a93a4504aa3622a86ddbf6051d163d873067dd951301af5162ddb72dfd13af2 
 ENV UBUNTU_VERSION=focal
+ENV FILENAME=xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz
 
 RUN useradd -ms /bin/bash monero
 USER monero
 WORKDIR /home/monero
 
-RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
-  echo "${XMRIG_SHA256}  xmrig" | sha256sum -c - &&\
-  tar -xvzf xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
+RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/${FILENAME} &&\
+  echo "${XMRIG_SHA256}  ${FILENAME}" | sha256sum -c - &&\
+  tar -xvzf ${FILENAME} &&\
   mv xmrig-${XMRIG_VERSION}/xmrig . &&\
   rm -rf xmrig-${XMRIG_VERSION}
 
