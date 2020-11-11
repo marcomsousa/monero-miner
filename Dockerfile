@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update -qq && \
@@ -7,14 +7,16 @@ RUN DEBIAN_FRONTEND=noninteractive \
       wget && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV XMRIG_VERSION=2.8.3 XMRIG_SHA256=365198ed4f1205c42fa448d41c9088d3dea6bff43173c5e870e8bec4631c3a7d
+ENV XMRIG_VERSION=6.5.1 
+ENV XMRIG_SHA256=9a93a4504aa3622a86ddbf6051d163d873067dd951301af5162ddb72dfd13af2 
+ENV UBUNTU_VERSION=focal
 
 RUN useradd -ms /bin/bash monero
 USER monero
 WORKDIR /home/monero
 
-RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmrig-${XMRIG_VERSION}-xenial-amd64.tar.gz &&\
-  tar -xvzf xmrig-${XMRIG_VERSION}-xenial-amd64.tar.gz &&\
+RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
+  tar -xvzf xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
   mv xmrig-${XMRIG_VERSION}/xmrig . &&\
   rm -rf xmrig-${XMRIG_VERSION} &&\
   echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
