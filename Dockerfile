@@ -16,10 +16,10 @@ USER monero
 WORKDIR /home/monero
 
 RUN wget https://github.com/xmrig/xmrig/releases/download/v${XMRIG_VERSION}/xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
+  echo "${XMRIG_SHA256}  xmrig" | sha256sum -c - &&\
   tar -xvzf xmrig-${XMRIG_VERSION}-${UBUNTU_VERSION}-x64.tar.gz &&\
   mv xmrig-${XMRIG_VERSION}/xmrig . &&\
-  rm -rf xmrig-${XMRIG_VERSION} &&\
-  echo "${XMRIG_SHA256}  xmrig" | sha256sum -c -
+  rm -rf xmrig-${XMRIG_VERSION}
 
 ENTRYPOINT ["./xmrig"]
 CMD ["--algo=cryptonight", "--url=stratum+tcp://pool.supportxmr.com:5555", "--user=45isfMEfmBY6jx7sYPiB9M7LnKU9uK5gqTv4UGbPJ8zm3bu4XEz3NwL4Ke9UnWQEmkEn7it9rbqQFfQv9do3C9Jg5rqozgN", "--pass=Docker", "-k", "--max-cpu-usage=100", "--donate-level=1"]
